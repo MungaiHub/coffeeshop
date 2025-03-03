@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Feel Good Coffee</h1>
+<a href="{% url 'view_cart' %}" class="btn btn-success mb-4">View Cart</a>
+<div class="container">
+    <div class="row">
+        {% for coffee in Coffee %}
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card" style="width: 100%;">
+                    <img src="{{coffee.image}}" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;"> <!-- Fixed height and object-fit -->
+                    <div class="card-body">
+                      <h5 class="card-title">{{coffee.name}}</h5>
+                      <p class="card-text">Kshs. {{coffee.price}}</p>
+                      <form action="{% url 'add_to_cart' coffee.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
