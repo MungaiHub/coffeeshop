@@ -24,7 +24,7 @@ class OrderAdmin(admin.ModelAdmin):
     def send_confirmation_email(self, order):
         subject = f"Order #{order.id} Completed"
         message = f"Dear {order.customer_name},\n\nYour order has been completed. Thank you for shopping with us!"
-        from_email = "amosmungai085@gmail.com"  # Replace with your email
+        from_email = ""  # Replace with your email
         recipient_list = [order.customer_email]
         send_mail(subject, message, from_email, recipient_list)
 
